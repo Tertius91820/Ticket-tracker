@@ -17,7 +17,7 @@ function fetchIssues(){
   let status = issue.status
   let statusColor = status == 'Closed' ? 'label-success' : 'label-info';
 
-  
+
   issuesList.innerHTML += `
 <div class="well">
 <h6>Issue ID: ${id}</h6>
@@ -30,7 +30,6 @@ function fetchIssues(){
 </div>
 `;
   })
-
     
 }
 
@@ -64,7 +63,7 @@ function fetchIssues(){
     fetchIssues()
 
     event.preventDefault()
-l
+
      
       
 }
