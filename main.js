@@ -15,7 +15,7 @@ function fetchIssues(){
   let severity = issue.severity
   let assignedTo = issue.assignedTo 
   let status = issue.status
-  let statusColor = status == 'Closed' ? 'label-success' : 'label-info';
+  let statusColor = status == 'Closed' ? 'label-warning' : 'label-info';
 
 
   issuesList.innerHTML += `
@@ -24,8 +24,8 @@ function fetchIssues(){
     <p><span class="label ${statusColor}">${status}</span></p>
     <h3>${subject}</h3>
     <p>${description}</p>
-    <p><span class="glyphicon glyphicon-time"></span> ${severity} <span class="glyphicon glyphicon-user"></span>${assignedTo}</p>
-    ${status == 'Open'? `<a href="#" class="btn btn-warning" onclick="toggleStatus('${id}\');">Close</a>` : `<a href="#" class="btn btn-success" onclick="toggleStatus('${id}\');">Open</a>`}
+    <p><span class="glyphicon glyphicon-time"></span> ${severity}  <span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
+    ${status == 'Open'? `<a href="#" class="btn btn-warning" onclick="toggleStatus('${id}\');">Close It</a>` : `<a href="#" class="btn btn-success" onclick="toggleStatus('${id}\');">Open It</a>`}
     <a href="#" class="btn btn-danger" onclick="deleteIssue('${id}\');">Delete</a>
     </div>
     `;
