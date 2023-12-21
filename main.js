@@ -19,16 +19,16 @@ function fetchIssues(){
 
 
   issuesList.innerHTML += `
-<div class="well">
-<h6>Issue ID: ${id}</h6>
-<p><span class="label ${statusColor}">${status}</span></p>
-<h3>${subject}</h3>
-<p>${description}</p>
-<p><span class="glyphicon glyphicon-time"></span> ${severity} <span class="glyphicon glyphicon-user"></span>${assignedTo}</p>
-<a href="#" class="btn btn-warning" onclick="setStatusClosed('${id}'); event.preventDefault();">Close</a>
-<a href="#" class="btn btn-danger" onclick="deleteIssue('${id}'); event.preventDefault();">Delete</a>
-</div>
-`;
+    <div class="well">
+    <h6>Issue ID: ${id}</h6>
+    <p><span class="label ${statusColor}">${status}</span></p>
+    <h3>${subject}</h3>
+    <p>${description}</p>
+    <p><span class="glyphicon glyphicon-time"></span> ${severity} <span class="glyphicon glyphicon-user"></span>${assignedTo}</p>
+    ${status == 'Open'? `<a href="#" class="btn btn-warning" onclick="toggleStatus('${id}\');">Close</a>` : `<a href="#" class="btn btn-success" onclick="toggleStatus('${id}\');">Open</a>`}
+    <a href="#" class="btn btn-danger" onclick="deleteIssue('${id}\');">Delete</a>
+    </div>
+    `;
   })
     
 }
@@ -63,7 +63,22 @@ function fetchIssues(){
     fetchIssues()
 
     event.preventDefault()
-
-     
-      
+          
 }
+
+function toggleStatus(id) {
+  let issues = JSON.parse(localStorage.getItem("issues"));
+  let issue = issues.find((i) => i.id == id);
+  issue.status = (issue.status === "Open" ? "Closed" : "Open");
+  localStorage.setItem("issues", JSON.stringify(issues));
+  fetchIssues();
+}
+
+function deleteIssue(id){
+  let issues = JSON.parse(localStorage.getItem('issues'))
+  let issue = issues.find(i => i.id == id)
+  issues.splice(issues.indexOf(issue), 1)
+  localStorage.setItem('issues', JSON.stringify(issues))
+  fetchIssues()
+} 
+
